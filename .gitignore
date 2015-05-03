@@ -1,2 +1,5 @@
 # Graph-generating script
 graph.py
+
+# Byte code
+*.pyc

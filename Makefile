@@ -1,9 +1,15 @@
-prog_NAME := gaussnewton.py
+prog_GAUSS := gaussnewton.py
+prog_GRAPH := graph.py
 
-.PHONY: all, clean
+.PHONY: all, gauss, clean, graph
 
-all:
-	./$(prog_NAME)
+all: gauss
+
+gauss:
+	./$(prog_GAUSS)
+
+graph:
+	./$(prog_GRAPH)
 
 clean:
 	$(RM) *.pyc
