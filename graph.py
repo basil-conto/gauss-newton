@@ -20,6 +20,7 @@ __license__ = "BSD3"
 
 odir = "img/"
 size = 10, 8
+fmt = "co"
 
 # Misra1a ----------------------------------------------------------------------
 (ans0, _), (ans1, _) = [gn.solve(m, start) for start in m.starts]
@@ -27,7 +28,7 @@ size = 10, 8
 # Observed range
 x = m.xvals
 plt.figure(figsize = size)
-plt.plot(x, m.yvals, "c.",
+plt.plot(x, m.yvals, fmt,
          x, m.model(x, ans0),
          x, m.model(x, ans1),
          x, m.model())
@@ -55,7 +56,7 @@ plt.close()
 # Observed range
 x = t.xvals
 plt.figure(figsize = size)
-plt.plot(x, t.yvals, "c.",
+plt.plot(x, t.yvals, fmt,
          x, t.model(x, ans0),
          x, t.model(x, ans1),
          x, t.model())
