@@ -12,26 +12,28 @@ from datasets import misra1a, thurber
 
 __author__  = "Basil L. Contovounesios"
 __email__   = "contovob@tcd.ie"
-__version__ = "2015.05.03"
+__version__ = "2015.05.05"
 __license__ = "BSD3"
 
-def solve(sys, x0, tol = 1e-10, maxits = 500):
+def solve(sys, x0, tol = 1e-10, maxits = 256):
     """Gauss-Newton algorithm for solving nonlinear least squares problems.
 
     Parameters
     ----------
     sys : Dataset
-        Class providing model() and jacobian() functions. The former should
-        evaluate an overdetermined nonlinear system given an n-tuple of
-        arguments. The latter should evaluate the Jacobian matrix of said system
-        given the same n-tuple of arguments.
+        Class providing residuals() and jacobian() functions. The former should
+        evaluate the residuals of a nonlinear system for a given set of
+        parameters. The latter should evaluate the Jacobian matrix of said
+        system for the same parameters.
     x0 : tuple, list or ndarray
         Initial guesses or starting estimates for the system.
     tol : float
         Tolerance threshold. The problem is considered solved when this value
         becomes smaller than the magnitude of the correction vector.
+        Defaults to 1e-10.
     maxits : int
         Maximum number of iterations of the algorithm to perform.
+        Defaults to 256.
 
     Return
     ------
@@ -51,7 +53,7 @@ def solve(sys, x0, tol = 1e-10, maxits = 500):
     i = 0
     while (i < maxits) and (dx[dx > tol].size > 0):
         # correction = pinv(jacobian) . residual vector
-        dx  = np.dot(np.linalg.pinv(sys.jacobian(xn)), -sys.system(xn))
+        dx  = np.dot(np.linalg.pinv(sys.jacobian(xn)), -sys.residuals(xn))
         xn += dx            # x_{n + 1} = x_n + dx_n
         i  += 1
 
@@ -63,11 +65,11 @@ def main():
     # Inhibit wrapping of arrays in print
     np.set_printoptions(linewidth = 256)
 
-    for sys in misra1a, thurber:
-        for i, x0 in enumerate(sys.starts):
-            sol, its = solve(sys, x0)
-            cv = sys.cvals
-            print("{}, start {}:".format(sys, i + 1))
+    for ds in misra1a, thurber:
+        for i, x0 in enumerate(ds.starts):
+            sol, its = solve(ds, x0)
+            cv = ds.cvals
+            print("{}, start {}:".format(ds, i + 1))
             print("  Iterations : {}".format(its))
             print("  Calculated : {}".format(sol))
             print("  Certified  : {}".format(cv))

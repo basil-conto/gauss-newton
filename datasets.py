@@ -30,7 +30,7 @@ import sympy as sp
 
 __author__  = "Basil L. Contovounesios"
 __email__   = "contovob@tcd.ie"
-__version__ = "2015.05.03"
+__version__ = "2015.05.05"
 __license__ = "BSD3"
 
 class Dataset:
@@ -107,8 +107,8 @@ class Dataset:
         if b is None: b = self.cvals
         return self._numexpr(x, *b)
 
-    def system(self, b):
-        """Evaluate f(x) - y with the given parameters.
+    def residuals(self, b):
+        """Evaluate the residuals f(x, b) - y with the given parameters.
 
         Parameters
         ----------
@@ -118,7 +118,7 @@ class Dataset:
         Return
         ------
         out : ndarray
-            Evaluation of rearranged model.
+            Residual vector for the given model parameters.
         """
         x, y = self.xvals, self.yvals
         return self._numexpr(x, *b) - y
