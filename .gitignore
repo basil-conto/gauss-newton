@@ -1,2 +1,5 @@
 # Byte code
 *.pyc
+
+# virtualenv
+env
