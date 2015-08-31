@@ -3,13 +3,10 @@ prog_GRAPH := graph.py
 
 .PHONY: all, gauss, clean, graph
 
-all: gauss
+all: gauss graph
 
-gauss:
-	./$(prog_GAUSS)
+gauss: ; ./$(prog_GAUSS)
 
-graph:
-	./$(prog_GRAPH)
+graph: ; ./$(prog_GRAPH)
 
-clean:
-	$(RM) *.pyc
+clean: ; $(RM) *.pyc
