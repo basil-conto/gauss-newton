@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Provides a class for nonlinear regression problems and instances thereof.
 
 The data is taken from a NIST archive of Statistical Reference Datasets intended
@@ -23,14 +23,12 @@ for x and y.
 It can be found at: http://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml
 """
 
-from __future__ import division
-
 import numpy as np
 import sympy as sp
 
 __author__  = "Basil L. Contovounesios"
 __email__   = "contovob@tcd.ie"
-__version__ = "2015.05.05"
+__version__ = "2023.01.27"
 __license__ = "BSD3"
 
 class Dataset:
@@ -81,13 +79,13 @@ class Dataset:
 
     def __repr__(self):
         """Return Dataset description in the form <Dataset NAME at ADDRESS>."""
-        return "<Dataset {} at {:x}>".format(self.name, id(self))
+        return f"<Dataset {self.name} at {id(self):x}>"
 
     def __str__(self):
         """Return name of Dataset, e.g. "Misra1a"."""
         return self.name
 
-    def model(self, x = None, b = None):
+    def model(self, x=None, b=None):
         """Evaluate the model with the given predictor variable and parameters.
 
         Parameters

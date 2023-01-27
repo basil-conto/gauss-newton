@@ -5,8 +5,6 @@ prog_GRAPH := graph.py
 
 all: gauss graph
 
-gauss: ; ./$(prog_GAUSS)
+gauss: ; pipenv run python $(prog_GAUSS)
 
-graph: ; ./$(prog_GRAPH)
-
-clean: ; $(RM) *.pyc
+graph: ; pipenv run python $(prog_GRAPH)

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Provides solve(), an implementation of the Gauss-Newton algorithm.
 
@@ -12,10 +12,10 @@ from datasets import misra1a, thurber
 
 __author__  = "Basil L. Contovounesios"
 __email__   = "contovob@tcd.ie"
-__version__ = "2015.05.05"
+__version__ = "2023.01.27"
 __license__ = "BSD3"
 
-def solve(sys, x0, tol = 1e-10, maxits = 256):
+def solve(sys, x0, tol=1e-10, maxits=256):
     """Gauss-Newton algorithm for solving nonlinear least squares problems.
 
     Parameters
@@ -69,11 +69,11 @@ def main():
         for i, x0 in enumerate(ds.starts):
             sol, its = solve(ds, x0)
             cv = ds.cvals
-            print("{}, start {}:".format(ds, i + 1))
-            print("  Iterations : {}".format(its))
-            print("  Calculated : {}".format(sol))
-            print("  Certified  : {}".format(cv))
-            print("  Difference : {}".format(np.abs(sol - cv)))
+            print(f"{ds}, start {i + 1}:")
+            print(f"  Iterations : {its}")
+            print(f"  Calculated : {sol}")
+            print(f"  Certified  : {cv}")
+            print(f"  Difference : {np.abs(sol - cv)}")
 
 if __name__ == "__main__":
     main()

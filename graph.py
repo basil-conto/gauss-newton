@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Graphs solutions from gaussnewton against their certified values.
 
@@ -15,7 +15,7 @@ from datasets import thurber as t
 
 __author__  = "Basil L. Contovounesios"
 __email__   = "contovob@tcd.ie"
-__version__ = "2015.05.03"
+__version__ = "2023.01.27"
 __license__ = "BSD3"
 
 odir = "img/"
